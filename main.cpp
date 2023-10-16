@@ -19,11 +19,22 @@ void drawBoard() {
     std::cout << "   |   |   " << std::endl;
     std::cout << std::endl;
     std::cout <<  "Select your move: ";
+}
 
+void setBoardInput(int position, char symbol) {
+    board[position-1] = symbol;
+}
+
+void handlePlayerInput() {
+    char input;
+    std::cin >> input;
+
+    setBoardInput(input - '0', 'X');
 }
 
 int main(int, char**) {
     while(true) {
         drawBoard();
+        handlePlayerInput();
     }
 }
