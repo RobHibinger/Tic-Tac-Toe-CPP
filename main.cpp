@@ -1,6 +1,9 @@
 #include <iostream>
+#include <cstdlib>
 
 char board[9] = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+const char PLAYER_SYMBOL = 'X';
+const char BOT_SYMBOL = 'O';
 
 void drawBoard() {
     system("cls");
@@ -32,9 +35,21 @@ void handlePlayerInput() {
     setBoardInput(input - '0', 'X');
 }
 
+void handleBotInput() {
+    for (int i = 0; i < 9; ++i) {
+        int position = (rand() % 9) + 1;
+        char boardPositonValue = board[position-1];
+        if (boardPositonValue != PLAYER_SYMBOL && boardPositonValue != BOT_SYMBOL) {
+            setBoardInput(position, 'O');
+            break;
+        }
+    }
+}
+
 int main(int, char**) {
     while(true) {
         drawBoard();
         handlePlayerInput();
+        handleBotInput();
     }
 }
